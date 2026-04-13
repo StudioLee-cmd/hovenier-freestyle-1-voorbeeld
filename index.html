@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GroenAtelier Voorbeeld — Tuinarchitectuur & Hoveniersdiensten Amsterdam</title>
+  <meta name="description" content="GroenAtelier Voorbeeld is uw hovenier in Amsterdam. Tuinontwerp, aanleg, onderhoud en complete buitenruimtes. Al 17 jaar vakmanschap in het groen.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">Groen<span>Atelier</span></a>
+
+      <nav class="desktop-nav" aria-label="Hoofdnavigatie">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#over-ons">Over Ons</a></li>
+          <li><a href="#contact" class="nav-cta">Offerte Aanvragen</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================== MOBILE MENU ======================== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="blog.html">Blog</a>
+      <a href="#over-ons">Over Ons</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-label">Hovenier Amsterdam</span>
+
+      <h1 class="gs-fade-up">
+        Waar natuur &<br><em>vakmanschap</em><br>samenkomen
+      </h1>
+
+      <p class="hero-subtitle gs-fade-up">
+        Al 17 jaar ontwerpen, bouwen en onderhouden wij buitenruimtes
+        die uw leven verrijken. Van intiem stadstuintje tot weelderig
+        landschapsontwerp.
+      </p>
+
+      <div class="hero-buttons gs-fade-up">
+        <a href="#contact" class="btn btn--gold">
+          <iconify-icon icon="lucide:phone"></iconify-icon>
+          Gratis Adviesgesprek
+        </a>
+        <a href="#portfolio" class="btn btn--outline">
+          <iconify-icon icon="lucide:images"></iconify-icon>
+          Bekijk Ons Werk
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+  <div class="ticker" style="background:var(--color-accent,#f5a623);padding:12px 0;overflow:hidden;">
+    <div style="display:flex;gap:48px;animation:tickerScroll 20s linear infinite;white-space:nowrap;">
+      <span><iconify-icon icon="lucide:leaf"></iconify-icon> Tuinontwerp</span><span><iconify-icon icon="lucide:trees"></iconify-icon> Tuinaanleg</span><span><iconify-icon icon="lucide:flower-2"></iconify-icon> Onderhoud</span><span><iconify-icon icon="lucide:scissors"></iconify-icon> Snoeien</span><span><iconify-icon icon="lucide:fence"></iconify-icon> Terrassen</span><span><iconify-icon icon="lucide:sun"></iconify-icon> Vijvers</span><span><iconify-icon icon="lucide:leaf"></iconify-icon> Tuinontwerp</span><span><iconify-icon icon="lucide:trees"></iconify-icon> Tuinaanleg</span><span><iconify-icon icon="lucide:flower-2"></iconify-icon> Onderhoud</span><span><iconify-icon icon="lucide:scissors"></iconify-icon> Snoeien</span><span><iconify-icon icon="lucide:fence"></iconify-icon> Terrassen</span><span><iconify-icon icon="lucide:sun"></iconify-icon> Vijvers</span>
+    </div>
+  </div>
+  <style>@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
+  <style>.ticker span{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:700;color:var(--color-bg,#0a0a0f);text-transform:uppercase;letter-spacing:0.05em;}</style>
+
+
+
+  <!-- ======================== SCROLL VIDEO (Canvas) ======================== -->
+  <section class="scroll-video-section" id="scrollVideo">
+    <div class="scroll-video-canvas-wrap">
+      <canvas id="scrollCanvas"></canvas>
+      <div class="scroll-video-overlay">
+        <h2 id="scrollOverlayText">Ontdek de transformatie</h2>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== SERVICES ======================== -->
+  <section class="services section-pad" id="diensten">
+    <div class="container">
+      <div class="services-header">
+        <span class="label gs-fade-up">Onze Diensten</span>
+        <h2 class="gs-fade-up">Compleet groenadvies, van tekentafel tot terras</h2>
+        <p class="gs-fade-up">Elk project begint met luisteren. Wij vertalen uw wensen naar een buitenruimte die past bij uw levensstijl, woning en budget.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card gs-fade-up">
+          <div class="service-icon">
+            <iconify-icon icon="lucide:leaf"></iconify-icon>
+          </div>
+          <h3>Tuinontwerp</h3>
+          <p>Van eerste schets tot gedetailleerd beplantingsplan. Wij ontwerpen tuinen die in elk seizoen verrassen, met oog voor lichtval, privacy en groei.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card gs-fade-up">
+          <div class="service-icon">
+            <iconify-icon icon="lucide:trees"></iconify-icon>
+          </div>
+          <h3>Tuinaanleg</h3>
+          <p>Ons team van vakmensen realiseert uw droomtuin. Bestrating, waterpartijen, pergola's, verlichting en siergrassen — alles uit eigen hand.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card gs-fade-up">
+          <div class="service-icon">
+            <iconify-icon icon="lucide:flower-2"></iconify-icon>
+          </div>
+          <h3>Beplanting</h3>
+          <p>De juiste plant op de juiste plek. Wij selecteren inheemse en klimaatbestendige soorten voor een tuin die met de jaren alleen maar mooier wordt.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card gs-fade-up">
+          <div class="service-icon">
+            <iconify-icon icon="lucide:scissors"></iconify-icon>
+          </div>
+          <h3>Tuinonderhoud</h3>
+          <p>Seizoensgebonden onderhoud zodat uw tuin er het hele jaar verzorgd uitziet. Snoeien, bemesten, onkruid verwijderen en gazonverzorging.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card gs-fade-up">
+          <div class="service-icon">
+            <iconify-icon icon="lucide:fence"></iconify-icon>
+          </div>
+          <h3>Erfafscheiding & Schutting</h3>
+          <p>Duurzame schuttingen, hekwerken en groene erfafscheidingen die privacy bieden zonder aan sfeer in te leveren. Douglas, hardhout of composiet.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card gs-fade-up">
+          <div class="service-icon">
+            <iconify-icon icon="lucide:sun"></iconify-icon>
+          </div>
+          <h3>Buitenverlichting</h3>
+          <p>Sfeervolle LED-verlichting die uw tuin ook na zonsondergang tot leven brengt. Padverlichting, spotlights op bomen en sfeerverlichting in borders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== STATS BAR ======================== -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-target="200" data-suffix="+">0</div>
+          <div class="stat-label">Tuinen Gerealiseerd</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="17" data-suffix=" jaar">0</div>
+          <div class="stat-label">Ervaring</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="14" data-suffix="">0</div>
+          <div class="stat-label">Vakbekwame Hoveniers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="4.9" data-suffix="" data-decimals="1">0</div>
+          <div class="stat-label">Google Beoordeling</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== SPLIT SECTION (Over Ons) ======================== -->
+  <section class="split-section" id="over-ons">
+    <div class="split-image gs-fade-left">
+      <img src="images/about.jpg" alt="Het team van GroenAtelier aan het werk in een tuin in Amsterdam" loading="lazy">
+    </div>
+    <div class="split-content">
+      <span class="label gs-fade-up">Over GroenAtelier</span>
+      <h2 class="gs-fade-up">Meer dan een hovenier — wij zijn uw tuinpartner</h2>
+      <p class="gs-fade-up">
+        Opgericht in 2009 door tuinarchitect Willem de Groot, is GroenAtelier uitgegroeid
+        tot een van de meest gewaardeerde hoveniersbedrijven in de regio Amsterdam.
+        Ons team van 14 vakmensen deelt dezelfde passie: buitenruimtes creeren die mensen
+        gelukkig maken.
+      </p>
+      <ul class="check-list gs-fade-up">
+        <li>
+          <iconify-icon icon="lucide:check-circle-2"></iconify-icon>
+          Gecertificeerd tuinarchitect in het team
+        </li>
+        <li>
+          <iconify-icon icon="lucide:check-circle-2"></iconify-icon>
+          VHG-erkend hoveniersbedrijf
+        </li>
+        <li>
+          <iconify-icon icon="lucide:check-circle-2"></iconify-icon>
+          5 jaar garantie op alle aanlegprojecten
+        </li>
+        <li>
+          <iconify-icon icon="lucide:check-circle-2"></iconify-icon>
+          Duurzame en klimaatadaptieve beplanting
+        </li>
+      </ul>
+      <a href="#contact" class="btn btn--gold gs-fade-up">
+        <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+        Maak Kennis
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ======================== TESTIMONIALS ======================== -->
+  <section class="testimonials section-pad">
+    <div class="container">
+      <div class="testimonials-header">
+        <span class="label gs-fade-up">Wat Klanten Zeggen</span>
+        <h2 class="gs-fade-up">Ervaringen van opdrachtgevers</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card gs-fade-up">
+          <div class="testimonial-stars">
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+          </div>
+          <blockquote>
+            &ldquo;Onze achtertuin was een kale vlakte. GroenAtelier heeft er een groene
+            oase van gemaakt waar we elke avond van genieten. Het ontwerp was precies
+            wat we voor ogen hadden, maar dan beter.&rdquo;
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marjolein van Dijk</div>
+              <div class="testimonial-location">Amsterdam-Zuid</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card gs-fade-up">
+          <div class="testimonial-stars">
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+          </div>
+          <blockquote>
+            &ldquo;Professioneel van begin tot eind. De mannen werkten netjes, hielden
+            zich aan de planning en het resultaat is schitterend. Onze buren zijn
+            jaloers — die hebben nu ook een afspraak gemaakt.&rdquo;
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div>
+              <div class="testimonial-name">Robert Bakker</div>
+              <div class="testimonial-location">Amstelveen</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card gs-fade-up">
+          <div class="testimonial-stars">
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+            <iconify-icon icon="lucide:star"></iconify-icon>
+          </div>
+          <blockquote>
+            &ldquo;Wij laten al drie jaar ons tuinonderhoud doen door GroenAtelier. Altijd
+            stipt op tijd, altijd even vriendelijk. Je merkt dat deze mensen van planten
+            houden. Aanrader voor iedereen in Amsterdam.&rdquo;
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div class="testimonial-name">Sophie de Vries</div>
+              <div class="testimonial-location">Amsterdam-Oost</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== GALLERY ======================== -->
+  <section class="gallery section-pad" id="portfolio">
+    <div class="container">
+      <div class="gallery-header">
+        <span class="label gs-fade-up">Portfolio</span>
+        <h2 class="gs-fade-up">Recente Projecten</h2>
+        <p class="gs-fade-up">Een selectie uit meer dan 200 gerealiseerde tuinen in de regio Amsterdam.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Item 1 — Spanning -->
+        <div class="gallery-item gs-scale-up">
+          <img src="images/project1.jpg" alt="Moderne achtertuin met zwemvijver in Amsterdam-Zuid" loading="lazy">
+          <div class="gallery-overlay">
+            <h4>Villa Tuin Amsterdam-Zuid</h4>
+            <span>Tuinontwerp & Aanleg</span>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="gallery-item gs-scale-up">
+          <img src="images/project2.jpg" alt="Stadstuin met terras en siergrassen in de Jordaan" loading="lazy">
+          <div class="gallery-overlay">
+            <h4>Stadstuin Jordaan</h4>
+            <span>Compact Groenontwerp</span>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="gallery-item gs-scale-up">
+          <img src="images/kitchen.jpg" alt="Buitenkeuken met pergola en kruidentuin" loading="lazy">
+          <div class="gallery-overlay">
+            <h4>Buitenkeuken & Pergola</h4>
+            <span>Hardscape & Groen</span>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="gallery-item gs-scale-up">
+          <img src="images/detail.jpg" alt="Detailfoto van een bloeiende border met lavendel en salie" loading="lazy">
+          <div class="gallery-overlay">
+            <h4>Bloeiende Borders</h4>
+            <span>Beplantingsplan</span>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="gallery-item gs-scale-up">
+          <img src="images/carousel.jpg" alt="Panoramabeeld van een landschapstuin in Amstelveen" loading="lazy">
+          <div class="gallery-overlay">
+            <h4>Landschapstuin Amstelveen</h4>
+            <span>Compleet Ontwerp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== FAQ ======================== -->
+  <section class="faq section-pad" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="label gs-fade-up">Veelgestelde Vragen</span>
+        <h2 class="gs-fade-up">Alles wat u wilt weten</h2>
+        <p class="gs-fade-up">De meest gestelde vragen van onze opdrachtgevers op een rij.</p>
+      </div>
+
+      <div class="faq-list">
+        <!-- FAQ 1 -->
+        <div class="faq-item gs-fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Wat kost een complete tuinaanleg?
+            <iconify-icon icon="lucide:plus"></iconify-icon>
+          </button>
+          <div class="faq-answer">
+            <p>De kosten variëren sterk per project. Een gemiddelde achtertuin van 40 m² begint rond de €4.500 voor een basispakket met bestrating en beplanting. Bij een volledig ontwerp met sierbestrating, verlichting en waterpartij rekent u op €8.000 tot €15.000. Wij maken altijd een vrijblijvende offerte na het eerste adviesgesprek, zodat u precies weet waar u aan toe bent.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item gs-fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Hoe lang duurt het voordat mijn tuin klaar is?
+            <iconify-icon icon="lucide:plus"></iconify-icon>
+          </button>
+          <div class="faq-answer">
+            <p>Na goedkeuring van het ontwerp plannen wij de aanleg meestal binnen 3 tot 6 weken. Een gemiddelde achtertuin is in 5 tot 10 werkdagen aangelegd, afhankelijk van de complexiteit. Grote projecten met waterpartijen of overkappingen kunnen 2 tot 3 weken duren. Het ontwerptraject zelf neemt 1 tot 3 weken in beslag.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item gs-fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Werken jullie ook in de winter?
+            <iconify-icon icon="lucide:plus"></iconify-icon>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, wij werken het hele jaar door. De wintermaanden zijn ideaal voor hardscape-werkzaamheden zoals bestrating, schuttingen en overkappingen. Beplanting vindt bij voorkeur plaats in het voor- of najaar, wanneer planten het best aanslaan. Onze planners stemmen het project af op de optimale seizoenen voor elk onderdeel.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item gs-fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Bieden jullie ook tuinonderhoud op abonnementsbasis?
+            <iconify-icon icon="lucide:plus"></iconify-icon>
+          </button>
+          <div class="faq-answer">
+            <p>Absoluut. Wij bieden drie onderhoudspakketten: Basis (4x per jaar), Standaard (6x per jaar) en Premium (maandelijks). Elk pakket omvat seizoensgebonden snoeiwerk, onkruidbeheer en een jaarlijkse tuininspectie. Zo blijft uw tuin er het hele jaar op zijn best uitzien, zonder dat u er zelf naar hoeft om te kijken.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item gs-fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Kan ik meedenken met het tuinontwerp?
+            <iconify-icon icon="lucide:plus"></iconify-icon>
+          </button>
+          <div class="faq-answer">
+            <p>Uiteraard — uw input is essentieel. Wij starten altijd met een uitgebreid intakegesprek bij u thuis, waar we uw wensen, leefstijl en budget bespreken. Op basis daarvan maken wij een conceptontwerp dat we in een tweede afspraak gezamenlijk finetunen. Wij leveren pas een definitief plan op als u er volledig achter staat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== CTA SECTION ======================== -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg">
+      <img src="images/cta-bg.jpg" alt="Sfeerbeeld van een verlichte tuin bij schemering" loading="lazy">
+    </div>
+    <div class="container">
+      <div class="cta-content gs-fade-up">
+        <span class="label" style="justify-content:center">Neem Contact Op</span>
+        <h2>Klaar om uw droomtuin werkelijkheid te maken?</h2>
+        <p>Plan een vrijblijvend adviesgesprek en ontdek wat GroenAtelier voor uw buitenruimte kan betekenen. Wij komen graag bij u langs voor een eerste kennismaking.</p>
+        <div class="cta-buttons">
+          <a href="tel:+31201234567" class="btn btn--gold">
+            <iconify-icon icon="lucide:phone"></iconify-icon>
+            020 - 123 4567
+          </a>
+          <a href="mailto:info@groenatelier.nl" class="btn btn--white">
+            <iconify-icon icon="lucide:mail"></iconify-icon>
+            info@groenatelier.nl
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-brand-name">Groen<span>Atelier</span></div>
+          <p>Tuinarchitectuur en hoveniersdiensten in Amsterdam en omstreken. Al 17 jaar uw partner voor alles in het groen.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <iconify-icon icon="lucide:instagram"></iconify-icon>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <iconify-icon icon="lucide:facebook"></iconify-icon>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <iconify-icon icon="lucide:linkedin"></iconify-icon>
+            </a>
+            <a href="#" aria-label="Pinterest">
+              <iconify-icon icon="lucide:pin"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        
+  <!-- ======================== BEFORE / AFTER ======================== -->
+  <section class="ba-section" style="height:100vh;position:relative;overflow:hidden;background:#000;">
+    <div style="width:100%;height:100%;position:relative;">
+      <img src="images/craft.jpg" alt="Na" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+      <img src="images/hero.jpg" alt="Voor" id="baBefore" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+      <div id="baLabel" style="position:absolute;z-index:3;bottom:10%;left:50%;transform:translateX(-50%);text-align:center;opacity:0;">
+        <span style="display:inline-block;background:var(--color-accent,#C1FF72);color:#0a0a0a;padding:8px 20px;border-radius:99px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">Scroll om te zien</span>
+        <h2 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,0.6);">Van oud naar <em style="color:var(--color-accent,#C1FF72);">nieuw</em></h2>
+      </div>
+    </div>
+  </section>
+<!-- Diensten -->
+        <div class="footer-column">
+          <h4>Diensten</h4>
+          <ul>
+            <li><a href="#diensten">Tuinontwerp</a></li>
+            <li><a href="#diensten">Tuinaanleg</a></li>
+            <li><a href="#diensten">Beplanting</a></li>
+            <li><a href="#diensten">Tuinonderhoud</a></li>
+            <li><a href="#diensten">Erfafscheiding</a></li>
+            <li><a href="#diensten">Buitenverlichting</a></li>
+          </ul>
+        </div>
+
+        <!-- Bedrijf -->
+        <div class="footer-column">
+          <h4>Bedrijf</h4>
+          <ul>
+            <li><a href="#over-ons">Over Ons</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#faq">Veelgestelde Vragen</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Algemene Voorwaarden</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <iconify-icon icon="lucide:map-pin"></iconify-icon>
+            <span>Keizersgracht 123, 1015 CJ Amsterdam</span>
+          </div>
+          <div class="footer-contact-item">
+            <iconify-icon icon="lucide:phone"></iconify-icon>
+            <a href="tel:+31201234567">020 - 123 4567</a>
+          </div>
+          <div class="footer-contact-item">
+            <iconify-icon icon="lucide:mail"></iconify-icon>
+            <a href="mailto:info@groenatelier.nl">info@groenatelier.nl</a>
+          </div>
+          <div class="footer-contact-item">
+            <iconify-icon icon="lucide:clock"></iconify-icon>
+            <span>Ma - Vr: 08:00 - 17:30</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 GroenAtelier Voorbeeld. Alle rechten voorbehouden.</span>
+        <span>KvK: 12345678 | BTW: NL123456789B01</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ======================== STUDIOLEE BADGE ======================== -->
+  <a href="https://www.studiolee.nl/website-laten-maken/hovenier" target="_blank" rel="noopener" class="studiolee-badge" aria-label="Website door StudioLee">
+    <iconify-icon icon="lucide:sparkles"></iconify-icon>
+    Website door <strong>STUDIOLEE</strong> — hoveniers
+  </a>
+
+
+  <!-- ======================== SCRIPTS ======================== -->
+  <script>
+    // Register GSAP plugins
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---- HEADER SCROLL ----
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ---- MOBILE MENU ----
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- GSAP: FADE-UP REVEALS ----
+    gsap.utils.toArray('.gs-fade-up').forEach(el => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // ---- GSAP: FADE-LEFT ----
+    gsap.utils.toArray('.gs-fade-left').forEach(el => {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // ---- GSAP: FADE-RIGHT ----
+    gsap.utils.toArray('.gs-fade-right').forEach(el => {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // ---- GSAP: SCALE-UP REVEALS (Gallery) ----
+    gsap.utils.toArray('.gs-scale-up').forEach(el => {
+      gsap.to(el, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // ---- GSAP: STAGGERED SERVICE CARDS ----
+    gsap.utils.toArray('.services-grid').forEach(grid => {
+      const cards = grid.querySelectorAll('.service-card');
+      ScrollTrigger.create({
+        trigger: grid,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power3.out'
+          });
+        }
+      });
+    });
+
+    // ---- GSAP: STAGGERED TESTIMONIAL CARDS ----
+    gsap.utils.toArray('.testimonials-grid').forEach(grid => {
+      const cards = grid.querySelectorAll('.testimonial-card');
+      ScrollTrigger.create({
+        trigger: grid,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+          });
+        }
+      });
+    });
+
+    // ---- GSAP: STAGGERED GALLERY ITEMS ----
+    gsap.utils.toArray('.gallery-grid').forEach(grid => {
+      const items = grid.querySelectorAll('.gallery-item');
+      ScrollTrigger.create({
+        trigger: grid,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(items, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out'
+          });
+        }
+      });
+    });
+
+    // ---- COUNTER ANIMATION ----
+    const counters = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const suffix = el.dataset.suffix || '';
+          const decimals = parseInt(el.dataset.decimals) || 0;
+          const duration = 2000;
+          const start = performance.now();
+
+          function animate(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+
+            if (decimals > 0) {
+              el.textContent = current.toFixed(decimals) + suffix;
+            } else {
+              el.textContent = Math.floor(current) + suffix;
+            }
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => counterObserver.observe(c));
+
+    // ---- PARALLAX ON SPLIT IMAGE ----
+    gsap.utils.toArray('.split-image img').forEach(img => {
+      gsap.to(img, {
+        yPercent: -12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img.closest('.split-section'),
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    });
+
+    // ---- SCROLL VIDEO (Canvas with 121 frames) ----
+    (function() {
+      const canvas = document.getElementById('scrollCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const frameCount = 121;
+      const images = [];
+      let loadedCount = 0;
+
+      // Set canvas size
+      function setCanvasSize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      setCanvasSize();
+      window.addEventListener('resize', setCanvasSize);
+
+      // Preload frames
+      for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        const num = String(i).padStart(4, '0');
+        img.src = 'images/frames/frame-' + String(i).padStart(3, '0') + '.jpg';
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === 1) drawFrame(0);
+        };
+        images[i] = img;
+      }
+
+      function drawFrame(index) {
+        const img = images[index];
+        if (!img || !img.complete) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Cover-fit the image
+        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+        const w = img.width * scale;
+        const h = img.height * scale;
+        const x = (canvas.width - w) / 2;
+        const y = (canvas.height - h) / 2;
+        ctx.drawImage(img, x, y, w, h);
+      }
+
+      const currentFrame = { value: 0 };
+
+      // GSAP ScrollTrigger for the canvas
+      gsap.to(currentFrame, {
+        value: frameCount - 1,
+        snap: 'value',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#scrollVideo',
+          start: 'top top',
+          end: '+=600%',
+          scrub: 1,
+          pin: true,
+          onUpdate: () => {
+            drawFrame(Math.round(currentFrame.value));
+          }
+        }
+      });
+
+      // Overlay text fade-in mid scroll
+      gsap.to('#scrollOverlayText', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: '#scrollVideo',
+          start: '30% top',
+          end: '50% top',
+          scrub: 1
+        }
+      });
+    })();
+
+    // ---- FAQ ACCORDION ----
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+        // Toggle current
+        if (!isActive) {
+          item.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ---- SMOOTH SCROLL FOR ANCHORS ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+
+    // Before/After slider
+    (function() {
+      var before = document.getElementById('baBefore');
+      var label = document.getElementById('baLabel');
+      if (!before || typeof gsap === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+      var tl = gsap.timeline({
+        scrollTrigger: { trigger: '.ba-section', start: 'top top', end: '+=200%', pin: true, scrub: 0.5, anticipatePin: 1 }
+      });
+      tl.fromTo(before, { clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 100% 0 0)', duration: 1, ease: 'none' });
+      tl.fromTo(label, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.5);
+    })();
+
+</body>
+</html>
